@@ -11,3 +11,20 @@ Further Improvements
 2.	Enhance UI/UX
 3.  Improve Error Messages
 4.  Advanced Search Features (filter and sort gists by various criteria)
+
+To run the project locally, you need to create a .env file, generate a GitHub token, and declare it as `REACT_APP_ENCODED_GITHUB_TOKEN`
+
+Steps to Create the Token and Set Permissions:
+
+1.	Generate GitHub Token:
+	•	Go to GitHub Settings
+	•	Click on Generate New Token
+	•	Provide a description for the token
+	•	Set the expiration (optional)
+	•	Select the gist scope to grant access to GitHub gists
+
+2.	Declare the Token in .env File:
+	•	Create a .env file in the root directory of the project
+	•	Add the following line to the .env file:
+
+`REACT_APP_ENCODED_GITHUB_TOKEN=your_generated_token_here`
