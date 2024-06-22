@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { formatDate } from '../../utils/dateUtils';
 import './gistItem.css';
 
-const GistItem = ({ gist }) => {
+const GistItem = ({ gist, handleGistClick }) => {
   const [forks, setForks] = useState([]);
 
   const renderFileTypes = (files) => {
@@ -10,9 +10,9 @@ const GistItem = ({ gist }) => {
     return Array.from(fileTypes).map(type => (
       <span key={type} className={`badge badge-${type.toLowerCase()}`}>{type}</span>
     ));
-  };
+  }
 
-  const fetchGistForks = async (forks_url) => {
+  const handleGistForks = async (forks_url) => {
     try {
       const response = await fetch(forks_url, {
         headers: {
@@ -39,11 +39,11 @@ const GistItem = ({ gist }) => {
   };
 
   useEffect(() => {
-    fetchGistForks(gist.forks_url);
+    handleGistForks(gist.forks_url);
   }, [gist.forks_url]);
 
   return (
-    <div className="gist-item">
+    <div className="gist-item" onClick={() => handleGistClick(gist.id)}>
       <div className="gist-description">
         <h3>{gist.description || 'No description'}</h3>
         <p>Files: {Object.keys(gist.files).join(', ')}</p>
@@ -54,9 +54,7 @@ const GistItem = ({ gist }) => {
             :
             <div>
               <p>Latest forks:</p>
-              <ul>
-                {renderForks()}
-              </ul>
+              <ul>{renderForks()}</ul>
             </div>
         }
         {
