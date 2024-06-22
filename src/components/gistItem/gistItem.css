@@ -39,3 +39,41 @@
   margin: 5px 0;
   color: #555;
 }
+
+.file-types {
+  margin-top: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  background-color: #796e6e;
+  color: white;
+}
+
+.badge-python {
+  background-color: #b07219;
+}
+
+.badge-javascript {
+  background-color: #F1E05A;
+}
+
+.badge-html {
+  background-color: #E34C26;
+}
+
+.badge-applescript {
+  background-color: #00a3a3;
+}
+
+.badge-java {
+  background-color: #b07219;
+}
+
+.badge-csharp {
+  background-color: #178600;
+}

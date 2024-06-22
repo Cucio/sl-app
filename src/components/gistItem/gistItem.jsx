@@ -7,6 +7,13 @@ const GistItem = ({ gist }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const renderFileTypes = (files) => {
+    const fileTypes = new Set(Object.values(files).map(file => file.language));
+    return Array.from(fileTypes).map(type => (
+      <span key={type} className={`badge badge-${type.toLowerCase()}`}>{type}</span>
+    ));
+  };
+
   return (
     <div className="gist-item">
       <div className="gist-description">
@@ -14,9 +21,15 @@ const GistItem = ({ gist }) => {
         <p>Files: {Object.keys(gist.files).join(', ')}</p>
         <p>Created at: {formatDate(gist.created_at)}</p>
         <p>Updated at: {formatDate(gist.updated_at)}</p>
+        {
+          gist.files.length == 0 ? null :
+            <div className="file-types">
+              {renderFileTypes(gist.files)}
+            </div>
+        }
       </div>
       <div className="gist-link">
-        <a href={gist.html_url} target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a href={gist.html_url}>View on GitHub</a>
       </div>
     </div>
   );
