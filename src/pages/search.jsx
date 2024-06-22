@@ -10,9 +10,15 @@ const Search = () => {
   const [searched, setSearched] = useState(false);
   const [selectedGist, setSelectedGist] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSearch = async (user) => {
     try {
+      if (user.trim() === '') {
+        setError('Input cannot be empty!');
+        return;
+      }
+
       const response = await fetch(`https://api.github.com/users/${user}/gists`, {
         headers: {
           'Authorization': `token ${process.env.REACT_APP_ENCODED_GITHUB_TOKEN}`
@@ -20,9 +26,14 @@ const Search = () => {
       });
       const data = await response.json();
 
-      console.log(data);
+      if (!data.length) {
+        setError('No gists found.');
+        return;
+      }
+
       setGists(data);
       setSearched(true)
+      setError('');
     } catch (err) {
       console.error(err);
     }
@@ -58,8 +69,8 @@ const Search = () => {
       <h1 className="search-title">Search Gists By Username</h1>
       <SearchBar handleSearch={handleSearch} />
       {
-        searched && gists.length === 0
-          ? <p className="no-gists-message">No gists found.</p>
+        searched && error
+          ? <p className="error-message">{error}</p>
           : <GistList gists={gists} handleGistClick={handleGistClick} />
       }
       <Modal isOpen={isModalOpen} onClose={closeModal}>

@@ -50,7 +50,7 @@ const GistItem = ({ gist, handleGistClick }) => {
         <p>Created at: {formatDate(gist.created_at)}</p>
         <p>Updated at: {formatDate(gist.updated_at)}</p>
         {
-          forks && forks.length === 0 ? null
+          !forks.length ? null
             :
             <div>
               <p>Latest forks:</p>
@@ -58,7 +58,7 @@ const GistItem = ({ gist, handleGistClick }) => {
             </div>
         }
         {
-          gist.files.length === 0 ? null :
+          gist.files.length ? null :
             <div className="file-types">
               {renderFileTypes(gist.files)}
             </div>
