@@ -1,0 +1,41 @@
+.gist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gist-item:hover {
+  background-color: #ecf0f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gist-description {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.gist-link {
+  flex-shrink: 0;
+}
+
+.gist-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.gist-link a:hover {
+  text-decoration: underline;
+}
+
+.gist-description p {
+  margin: 5px 0;
+  color: #555;
+}
