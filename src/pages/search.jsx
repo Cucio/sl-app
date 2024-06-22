@@ -9,10 +9,13 @@ const Search = () => {
 
   const handleSearch = async (user) => {
     try {
-      const response = await fetch(`https://api.github.com/users/${user}/gists`);
+      const response = await fetch(`https://api.github.com/users/${user}/gists`, {
+        headers: {
+          'Authorization': `token ${process.env.REACT_APP_ENCODED_GITHUB_TOKEN}`
+        }
+      });
       const data = await response.json();
 
-      console.log(data);
       setGists(data);
       setSearched(true)
     } catch (err) {

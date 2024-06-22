@@ -74,6 +74,19 @@
   background-color: #b07219;
 }
 
-.badge-csharp {
+.badge-lua {
   background-color: #178600;
+}
+
+.fork-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
