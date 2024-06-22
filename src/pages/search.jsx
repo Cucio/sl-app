@@ -7,14 +7,13 @@ import './search.css';
 
 const Search = () => {
   const [gists, setGists] = useState([]);
-  const [searched, setSearched] = useState(false);
   const [selectedGist, setSelectedGist] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState('');
 
   const handleSearch = async (user) => {
     try {
-      if (user.trim() === '') {
+      if (user === '') {
         setError('Input cannot be empty!');
         return;
       }
@@ -32,7 +31,6 @@ const Search = () => {
       }
 
       setGists(data);
-      setSearched(true)
       setError('');
     } catch (err) {
       console.error(err);
@@ -69,7 +67,7 @@ const Search = () => {
       <h1 className="search-title">Search Gists By Username</h1>
       <SearchBar handleSearch={handleSearch} />
       {
-        searched && error
+        error
           ? <p className="error-message">{error}</p>
           : <GistList gists={gists} handleGistClick={handleGistClick} />
       }
