@@ -6,7 +6,7 @@ const SearchBar = ({ handleSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch(input);
+    handleSearch(input.trim());
     setInput('');
   };
 
